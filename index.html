@@ -18,35 +18,6 @@
             background: #0d0d0d;
         }
         
-        /* Radio button language switching - no JavaScript needed */
-        .lang-radio {
-            display: none;
-        }
-        
-        .lang-content {
-            display: none;
-        }
-        
-        /* Show content based on checked radio */
-        #lang-en:checked ~ main #content-en,
-        #lang-fr:checked ~ main #content-fr,
-        #lang-es:checked ~ main #content-es,
-        #lang-de:checked ~ main #content-de,
-        #lang-pt:checked ~ main #content-pt {
-            display: block;
-        }
-        
-        /* Highlight active button */
-        #lang-en:checked ~ header .lang-selector label[for="lang-en"],
-        #lang-fr:checked ~ header .lang-selector label[for="lang-fr"],
-        #lang-es:checked ~ header .lang-selector label[for="lang-es"],
-        #lang-de:checked ~ header .lang-selector label[for="lang-de"],
-        #lang-pt:checked ~ header .lang-selector label[for="lang-pt"] {
-            border-color: #cc0000;
-            background: #2d0000;
-            color: #ff4444;
-        }
-        
         .language-selector {
             display: flex;
             justify-content: center;
@@ -64,14 +35,21 @@
             font-size: 0.9rem;
             color: #ccc;
             transition: all 0.3s ease;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            text-decoration: none;
         }
         
         .lang-btn:hover {
             border-color: #ff4444;
             background: #2d0000;
+        }
+        
+        .lang-btn.active {
+            border-color: #cc0000;
+            background: #2d0000;
+            color: #ff4444;
         }
         
         .lang-btn.active {
@@ -230,20 +208,13 @@
     </style>
 </head>
 <body>
-    <!-- Hidden radio buttons for language selection -->
-    <input type="radio" name="lang" id="lang-en" class="lang-radio" checked>
-    <input type="radio" name="lang" id="lang-fr" class="lang-radio">
-    <input type="radio" name="lang" id="lang-es" class="lang-radio">
-    <input type="radio" name="lang" id="lang-de" class="lang-radio">
-    <input type="radio" name="lang" id="lang-pt" class="lang-radio">
-    
     <header>
         <div class="language-selector">
-            <label for="lang-en" class="lang-btn">�� ENGLISH</label>
-            <label for="lang-fr" class="lang-btn">🇫🇷 FRENCH</label>
-            <label for="lang-es" class="lang-btn">🇪🇸 SPANISH</label>
-            <label for="lang-de" class="lang-btn">🇩🇪 GERMAN</label>
-            <label for="lang-pt" class="lang-btn">🇵🇹 PORTUGUESE</label>
+            <button class="lang-btn active" id="btn-en" onclick="showLang('en')">EN</button>
+            <button class="lang-btn" id="btn-fr" onclick="showLang('fr')">FR</button>
+            <button class="lang-btn" id="btn-es" onclick="showLang('es')">ES</button>
+            <button class="lang-btn" id="btn-de" onclick="showLang('de')">DE</button>
+            <button class="lang-btn" id="btn-pt" onclick="showLang('pt')">PT</button>
         </div>
         <h1>GRU Long-Term Data Poisoning on Primes</h1>
         <p>Documentation of Information Warfare Targeting Mathematical Knowledge Bases</p>
