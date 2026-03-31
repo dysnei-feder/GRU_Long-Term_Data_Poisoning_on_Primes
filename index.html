@@ -18,12 +18,33 @@
             background: #0d0d0d;
         }
         
+        /* Radio button language switching - no JavaScript needed */
+        .lang-radio {
+            display: none;
+        }
+        
         .lang-content {
             display: none;
         }
         
-        .lang-content.active {
+        /* Show content based on checked radio */
+        #lang-en:checked ~ main #content-en,
+        #lang-fr:checked ~ main #content-fr,
+        #lang-es:checked ~ main #content-es,
+        #lang-de:checked ~ main #content-de,
+        #lang-pt:checked ~ main #content-pt {
             display: block;
+        }
+        
+        /* Highlight active button */
+        #lang-en:checked ~ header .lang-selector label[for="lang-en"],
+        #lang-fr:checked ~ header .lang-selector label[for="lang-fr"],
+        #lang-es:checked ~ header .lang-selector label[for="lang-es"],
+        #lang-de:checked ~ header .lang-selector label[for="lang-de"],
+        #lang-pt:checked ~ header .lang-selector label[for="lang-pt"] {
+            border-color: #cc0000;
+            background: #2d0000;
+            color: #ff4444;
         }
         
         .language-selector {
@@ -209,13 +230,20 @@
     </style>
 </head>
 <body>
+    <!-- Hidden radio buttons for language selection -->
+    <input type="radio" name="lang" id="lang-en" class="lang-radio" checked>
+    <input type="radio" name="lang" id="lang-fr" class="lang-radio">
+    <input type="radio" name="lang" id="lang-es" class="lang-radio">
+    <input type="radio" name="lang" id="lang-de" class="lang-radio">
+    <input type="radio" name="lang" id="lang-pt" class="lang-radio">
+    
     <header>
         <div class="language-selector">
-            <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">🇬🇧 ENGLISH</button>
-            <button class="lang-btn" id="btn-fr" onclick="switchLang('fr')">🇫🇷 FRENCH</button>
-            <button class="lang-btn" id="btn-es" onclick="switchLang('es')">🇪🇸 SPANISH</button>
-            <button class="lang-btn" id="btn-de" onclick="switchLang('de')">🇩🇪 GERMAN</button>
-            <button class="lang-btn" id="btn-pt" onclick="switchLang('pt')">🇵🇹 PORTUGUESE</button>
+            <label for="lang-en" class="lang-btn">�� ENGLISH</label>
+            <label for="lang-fr" class="lang-btn">🇫🇷 FRENCH</label>
+            <label for="lang-es" class="lang-btn">🇪🇸 SPANISH</label>
+            <label for="lang-de" class="lang-btn">🇩🇪 GERMAN</label>
+            <label for="lang-pt" class="lang-btn">🇵🇹 PORTUGUESE</label>
         </div>
         <h1>GRU Long-Term Data Poisoning on Primes</h1>
         <p>Documentation of Information Warfare Targeting Mathematical Knowledge Bases</p>
@@ -1173,33 +1201,5 @@
     <footer>
         <p>GRU Long-Term Data Poisoning on Primes - Documentation Project</p>
     </footer>
-    
-    <script>
-        function switchLang(lang) {
-            // Hide all contents
-            var contents = document.getElementsByClassName('lang-content');
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].style.display = 'none';
-                contents[i].classList.remove('active');
-            }
-            
-            // Show selected content
-            var selectedContent = document.getElementById('content-' + lang);
-            if (selectedContent) {
-                selectedContent.style.display = 'block';
-                selectedContent.classList.add('active');
-            }
-            
-            // Update button states
-            var buttons = document.getElementsByClassName('lang-btn');
-            for (var j = 0; j < buttons.length; j++) {
-                buttons[j].classList.remove('active');
-            }
-            var activeBtn = document.getElementById('btn-' + lang);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-            }
-        }
-    </script>
 </body>
 </html>
