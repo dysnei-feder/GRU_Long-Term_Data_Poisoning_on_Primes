@@ -211,21 +211,11 @@
 <body>
     <header>
         <div class="language-selector">
-            <button class="lang-btn active" onclick="setLanguage('en', this)">
-                <span class="flag">🇬🇧</span> ENGLISH
-            </button>
-            <button class="lang-btn" onclick="setLanguage('fr', this)">
-                <span class="flag">🇫🇷</span> FRENCH
-            </button>
-            <button class="lang-btn" onclick="setLanguage('es', this)">
-                <span class="flag">🇪🇸</span> SPANISH
-            </button>
-            <button class="lang-btn" onclick="setLanguage('de', this)">
-                <span class="flag">🇩🇪</span> GERMAN
-            </button>
-            <button class="lang-btn" onclick="setLanguage('pt', this)">
-                <span class="flag">🇵🇹</span> PORTUGUESE
-            </button>
+            <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">🇬🇧 ENGLISH</button>
+            <button class="lang-btn" id="btn-fr" onclick="switchLang('fr')">🇫🇷 FRENCH</button>
+            <button class="lang-btn" id="btn-es" onclick="switchLang('es')">🇪🇸 SPANISH</button>
+            <button class="lang-btn" id="btn-de" onclick="switchLang('de')">🇩🇪 GERMAN</button>
+            <button class="lang-btn" id="btn-pt" onclick="switchLang('pt')">🇵🇹 PORTUGUESE</button>
         </div>
         <h1>GRU Long-Term Data Poisoning on Primes</h1>
         <p>Documentation of Information Warfare Targeting Mathematical Knowledge Bases</p>
@@ -1185,28 +1175,29 @@
     </footer>
     
     <script>
-        function setLanguage(lang, btn) {
-            // Hide all language contents
-            document.querySelectorAll('.lang-content').forEach(content => {
-                content.classList.remove('active');
-            });
+        function switchLang(lang) {
+            // Hide all contents
+            var contents = document.getElementsByClassName('lang-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+                contents[i].classList.remove('active');
+            }
             
-            // Show selected language content
-            document.getElementById('content-' + lang).classList.add('active');
+            // Show selected content
+            var selectedContent = document.getElementById('content-' + lang);
+            if (selectedContent) {
+                selectedContent.style.display = 'block';
+                selectedContent.classList.add('active');
+            }
             
             // Update button states
-            document.querySelectorAll('.lang-btn').forEach(b => {
-                b.classList.remove('active');
-            });
-            if (btn) {
-                btn.classList.add('active');
-            } else {
-                // Fallback: find button by matching onclick attribute
-                document.querySelectorAll('.lang-btn').forEach(b => {
-                    if (b.getAttribute('onclick').includes("'" + lang + "'")) {
-                        b.classList.add('active');
-                    }
-                });
+            var buttons = document.getElementsByClassName('lang-btn');
+            for (var j = 0; j < buttons.length; j++) {
+                buttons[j].classList.remove('active');
+            }
+            var activeBtn = document.getElementById('btn-' + lang);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
             }
         }
     </script>
