@@ -100,7 +100,7 @@ This operation represents a sophisticated attempt to:
 - Digital twin technology combined with real-time content generation
 
 **Current Estimates**
-- GRU reportedly runs AI systems 4-5 years ahead of public LLMs (ChatGPT, our AI system, Claude)
+- GRU reportedly runs AI systems 4-5 years ahead of public LLMs (our AI system)
 - Advanced narrative injection capabilities through these systems
 
 ## Psychological Operations Integration
